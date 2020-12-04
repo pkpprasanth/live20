@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
 import { Route, Switch } from "react-router-dom";
 import Auth from "../hoc/auth";
-// pages for this product
 import LandingPage from "./views/LandingPage/LandingPage.js";
 import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
@@ -10,7 +9,11 @@ import Footer from "./views/Footer/Footer"
 import UploadVideoPage from "./views/UploadVideoPage/UploadVideoPage"
 import DetailVideoPage from "./views/DetailVideoPage/DetailVideoPage"
 import SubscriptionPage from "./views/SubscriptionPage/SubscriptionPage"
+import Rules from "./views/Rules/Rules"
+import Myprofile from "./views/Myprofile/Myprofile"
+
 function App() {
+  
   return (
     <Suspense fallback={(<div>Loading...</div>)}>
       <NavBar />
@@ -22,6 +25,9 @@ function App() {
           <Route exact path="/video/upload" component={Auth(UploadVideoPage, true)} />
           <Route exact path="/video/:videoId" component={Auth(DetailVideoPage, null)} />
           <Route exact path="/subscription" component={Auth(SubscriptionPage, null)} />
+          <Route exact path="/rules" component={Auth(Rules, null)} />
+          <Route exact path="/myprofile" component={Auth(Myprofile, null)} />
+
         </Switch>
       </div>
       <Footer />

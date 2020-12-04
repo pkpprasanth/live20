@@ -3,6 +3,9 @@ import { FaCode } from "react-icons/fa";
 import { Card, Avatar, Col, Typography, Row } from 'antd';
 import axios from 'axios';
 import moment from 'moment';
+import Silde from '../Silde/Silde';
+import Search from '../Search/Search'
+import './new.css'
 const { Title } = Typography;
 const { Meta } = Card;
 function LandingPage() {
@@ -30,8 +33,8 @@ function LandingPage() {
         var minutes = Math.floor(video.duration / 60);
         var seconds = Math.floor(video.duration - minutes * 60);
 
-        return <Col lg={6} md={8} xs={24}>
-            <div style={{ position: 'relative' }}>
+        return <Col lg={6} md={8} xs={24} >
+            <div className="new"  style={{ position: 'relative' }}>
                 <a href={`/video/${video._id}`} >
                 <img style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${video.thumbnail}`} />
                 <div className=" duration"
@@ -56,14 +59,48 @@ function LandingPage() {
 
     })
 
-
+    const searchInput= (e)=>{
+       
+        let search=e.target.value
+        if(search.length === 0){
+            console.log("done")
+            axios.get('/api/video/getVideos')
+            .then(response => {
+                if (response.data.success) {
+                    console.log(response.data)
+                    setVideos(response.data.videos)
+                } else {
+                    alert('Failed to get Videos')
+                }
+            })
+        }
+        console.log("Videos -> ",Videos)
+        var filterfood= Videos.filter((food)=>{
+            if(food.title.includes(search)){
+                return food;
+                // console.log("new -> ",food.title)
+            }
+            
+            else{
+                return null;
+            }
+        })
+       
+        setVideos(filterfood)
+    }
+   
 
     return (
         <div style={{ width: '85%', margin: '3rem auto' }}>
-            <Title level={2} > Recommended </Title>
+            <Title level={2} > About </Title>
             <hr />
+            <Silde></Silde>
+            <hr />
+            <Search searchInput={(e)=>searchInput(e)} searchIt={()=>this.state.search}/>
 
-            <Row gutter={16}>
+             <Title level={2} > Vidoes List </Title>
+
+            <Row gutter={16} >
                 {renderCards}
             </Row>
         </div>

@@ -3,7 +3,7 @@ import LeftMenu from './Sections/LeftMenu';
 import RightMenu from './Sections/RightMenu';
 import { Drawer, Button, Icon } from 'antd';
 import './Sections/Navbar.css';
-const Logo = require('../../../assets/images/tenor.gif');
+const Logo = require('../../../assets/images/White on Black.png');
 
 function NavBar() {
   const [visible, setVisible] = useState(false)
@@ -17,7 +17,7 @@ function NavBar() {
   };
 
   return (
-    <nav className="menu" style={{ position: 'fixed', zIndex: 1, width: '100%' }}>  
+    <nav className="menu" style={{color: 'red' ,position: 'fixed', zIndex: 1, width: '100%',}}>  
     {/* background: 'coral' */}
       <div className="menu__logo">
         <a href="/"><img src={Logo} alt="Logo" style={{ width: '100%', marginTop: '-5px' }} /></a>

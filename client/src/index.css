@@ -37,3 +37,10 @@ input.error {
   height: 5px;
   margin-top: -12px;
 }
+
+/* .new:hover{
+  transition: .5s;
+  cursor: pointer;
+  transform: scale(1.09);
+   box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+} */

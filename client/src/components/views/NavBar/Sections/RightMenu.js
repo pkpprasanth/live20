@@ -13,6 +13,7 @@ function RightMenu(props) {
   const logoutHandler = () => {
     axios.get(`${USER_SERVER}/logout`).then(response => {
       if (response.status === 200) {
+        sessionStorage.clear()
         props.history.push("/login");
       } else {
         alert('Log Out Failed')
@@ -29,20 +30,28 @@ function RightMenu(props) {
         <Menu.Item key="app">
           <a href="/register">Signup</a>
         </Menu.Item>
+        
       </Menu>
+     
+      
     )
   } else {
     return (
       <Menu mode={props.mode}>
+         <Menu.Item key="myprofile">
+          <a href="/myprofile">Myprofile</a>
+        </Menu.Item>
         <Menu.Item key="create">
           <a href="/video/upload"><img src={Upload} alt="Upload" /></a>
         </Menu.Item>
         <Menu.Item key="logout">
           <a onClick={logoutHandler}>Logout</a>
+          
         </Menu.Item>
       </Menu>
     )
   }
+  
 }
 
 export default withRouter(RightMenu);

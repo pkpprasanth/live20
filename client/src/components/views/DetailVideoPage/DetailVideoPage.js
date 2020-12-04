@@ -16,12 +16,17 @@ function DetailVideoPage(props) {
         videoId: videoId
     }
 
+    
     useEffect(() => {
+
         axios.post('/api/video/getVideo', videoVariable)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.video)
                     setVideo(response.data.video)
+                    axios.put('/api/video/views/'+videoId+'/'+response.data.video.views).then(
+                        console.log("success")
+                    )
                 } else {
                     alert('Failed to get video Info')
                 }
@@ -37,13 +42,13 @@ function DetailVideoPage(props) {
                 }
             })
 
-
     }, [])
 
+     console.log("test");
     const updateComment = (newComment) => {
         setCommentLists(CommentLists.concat(newComment))
     }
-
+ 
 
     if (Video.writer) {
         return (
@@ -53,7 +58,7 @@ function DetailVideoPage(props) {
                         <video style={{ width: '100%' }} src={`http://localhost:5000/${Video.filePath}`} controls></video>
 
                         <List.Item
-                            actions={[<LikeDislikes video videoId={videoId} userId={localStorage.getItem('userId')}  />, <Subscriber userTo={Video.writer._id} userFrom={localStorage.getItem('userId')} />]}
+                            actions={[<LikeDislikes video videoId={videoId} userId={sessionStorage.getItem('userId')}  />, <Subscriber userTo={Video.writer._id} userFrom={sessionStorage.getItem('userId')} />]}
                         >
                             <List.Item.Meta
                                 avatar={<Avatar src={Video.writer && Video.writer.image} />}
@@ -62,9 +67,10 @@ function DetailVideoPage(props) {
                             />
                             <div></div>
                         </List.Item>
+                        {sessionStorage.getItem('userId') != null &&
 
                         <Comments CommentLists={CommentLists} postId={Video._id} refreshFunction={updateComment} />
-
+        }
                     </div>
                 </Col>
                 <Col lg={6} xs={24}>

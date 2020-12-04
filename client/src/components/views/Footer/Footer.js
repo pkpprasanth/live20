@@ -8,7 +8,7 @@ function Footer() {
             flexDirection: 'column', alignItems: 'center',
             justifyContent: 'center', fontSize:'1rem'
         }}>
-           <p> Youtube <Icon type="smile" /></p>
+           <p> pkp <Icon type="smile" /></p>
         </div>
     )
 }

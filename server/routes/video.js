@@ -44,16 +44,16 @@ router.post("/uploadfiles", (req, res) => {
 
 
 router.post("/thumbnail", (req, res) => {
-    console.log(req.body)
+
     let thumbsFilePath ="";
     let fileDuration ="";
+    console.dir(req.body.filePath)
+    ffmpeg.ffprobe(req.body.filePath, function(err, metadata){
+        console.dir(metadata);
+        console.log(metadata.format.duration);
 
-    // ffmpeg.ffprobe(req.body.filePath, function(err, metadata){
-    //     console.log("metadata-> "+metadata);
-    //     console.log(metadata.duration);
-
-    //     fileDuration = metadata.format.duration;
-    // })
+        fileDuration = metadata.format.duration;
+    })
 
 
     ffmpeg(req.body.filePath)
@@ -116,6 +116,17 @@ router.post("/getVideo", (req, res) => {
     })
 });
 
+router.put("/views/:id/:views", (req,res) => {
+    console.log("Workss")
+    console.log(req.params.id,req.params.views)
+
+    Video.findByIdAndUpdate(req.params.id, {$set : {views : Number(req.params.views)+1}}, {new : true}, (err, doc) => {
+        if(err) return res.status(400).json({ success: false, err })
+        return res.status(200).json({
+            success: true 
+        })
+    } )
+})
 
 router.post("/getSubscriptionVideos", (req, res) => {
 
