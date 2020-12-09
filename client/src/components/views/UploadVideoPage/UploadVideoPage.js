@@ -14,10 +14,10 @@ const Private = [
 
 const Catogory = [
     { value: 0, label: "Film & Animation" },
-    { value: 0, label: "Autos & Vehicles" },
-    { value: 0, label: "Music" },
-    { value: 0, label: "Pets & Animals" },
-    { value: 0, label: "Sports" },
+    { value: 1, label: "Autos & Vehicles" },
+    { value: 2, label: "Music" },
+    { value: 3, label: "Pets & Animals" },
+    { value: 4, label: "Sports" },
 ]
 
 function UploadVideoPage(props) {
@@ -76,7 +76,9 @@ function UploadVideoPage(props) {
         }
 
         axios.post('/api/video/uploadVideo', variables)
+        
             .then(response => {
+                
                 if (response.data.success) {
                     alert('video Uploaded Successfully')
                     props.history.push('/')
@@ -184,7 +186,8 @@ function UploadVideoPage(props) {
                 </select>
                 <br /><br />
 
-                <Button type="primary" size="large" onClick={onSubmit}>
+                <Button style={{ textAlign: 'center', marginLeft: '20rem' }}
+                 type="primary" size="large" onClick={onSubmit}>
                     Submit
             </Button>
 

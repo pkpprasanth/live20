@@ -76,8 +76,10 @@ function LandingPage() {
    
 
     return (
+       
         <div style={{ width: '85%', margin: '3rem auto' }}>
             <hr />
+            <h1>Hello</h1>
              <Title level={2} > Vidoes List </Title>
   
             <Row gutter={16} >

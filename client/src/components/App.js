@@ -11,6 +11,8 @@ import DetailVideoPage from "./views/DetailVideoPage/DetailVideoPage"
 import SubscriptionPage from "./views/SubscriptionPage/SubscriptionPage"
 import Rules from "./views/Rules/Rules"
 import Myprofile from "./views/Myprofile/Myprofile"
+import Category from "./views/Category/Category"
+
 
 function App() {
   
@@ -27,6 +29,7 @@ function App() {
           <Route exact path="/subscription" component={Auth(SubscriptionPage, null)} />
           <Route exact path="/rules" component={Auth(Rules, null)} />
           <Route exact path="/myprofile" component={Auth(Myprofile, null)} />
+          <Route exact path="/category" component={Auth(Category, null)} />
 
         </Switch>
       </div>

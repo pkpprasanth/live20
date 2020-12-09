@@ -76,7 +76,7 @@ function LandingPage() {
         }
         console.log("Videos -> ",Videos)
         var filterfood= Videos.filter((food)=>{
-            if(food.title.includes(search)){
+            if((food.title.toLowerCase()).includes((search.toLowerCase()))){
                 return food;
                 // console.log("new -> ",food.title)
             }
