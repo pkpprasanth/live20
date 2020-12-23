@@ -10,6 +10,8 @@ const { Meta } = Card;
 function CategoryPage() {
 
     const [Videos, setVideos] = useState([])
+    const [Videos1, setVideos1] = useState([])
+
 
     useEffect(() => {
         axios.get('/api/video/getVideos')
@@ -17,6 +19,8 @@ function CategoryPage() {
                 if (response.data.success) {
                     console.log(response.data)
                     setVideos(response.data.videos)
+                    setVideos1(response.data.videos)
+
                 } else {
                     alert('Failed to get Videos')
                 }
@@ -27,7 +31,7 @@ function CategoryPage() {
 
 
 
-    const renderCards = Videos.map((video, index) => {
+    const renderCards = Videos1.map((video, index) => {
 
         var minutes = Math.floor(video.duration / 60);
         var seconds = Math.floor(video.duration - minutes * 60);
@@ -92,7 +96,7 @@ function CategoryPage() {
                         }
                     })
                     console.log("filterfood  -> ",filterfood)
-                    setVideos(filterfood)
+                    setVideos1(filterfood)
 
                 } else {
                     alert('Failed to get Videos')
@@ -115,7 +119,7 @@ function CategoryPage() {
    
 
     return (
-        <div style={{ width: '85%', margin: '3rem auto' }}>
+        <div style={{ width: '85%', margin: '3rem auto',color:'rgb(12, 12, 12)' }}>
             <Title level={2} > Category Videos </Title>
             <hr />
             <button value="" onClick={searchInput}>Refresh</button>
@@ -123,13 +127,13 @@ function CategoryPage() {
             <button value="Pets & Animals" onClick={searchInput}>Pets & Animals</button>
             <button value="Music" onClick={searchInput}>Music</button>
             <button value="Sports" onClick={searchInput}>Sports</button>
-           
-
+            <div style={{color:'#f4f6f8' }}>
              <Title level={2} > Vidoes List </Title>
 
-            <Row gutter={16} >
+            <Row  gutter={16}  >
                 {renderCards}
             </Row>
+            </div>
         </div>
     )
 }

@@ -26,8 +26,9 @@ h1{
     margin-right: 2%;
     text-align: right;
 }
+
 .main1{
- 
+    color: white;
     transition: .5s;
     cursor: pointer;
     transform: scale(1.05);

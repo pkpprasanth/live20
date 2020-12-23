@@ -4,7 +4,7 @@ import './rules.css'
 export default class Rules extends Component {
     render() {
         return (
-            <div>
+            <div id='data'>
     <div className="main1">
         <div>
         <h1>Rules and regulation</h1>
