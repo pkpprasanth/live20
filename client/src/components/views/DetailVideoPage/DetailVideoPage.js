@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { List, Avatar, Row, Col } from 'antd';
+import React, { useEffect,useRef, useState } from 'react'
+import { List, Avatar, Row, Col,Button,Icon,Input } from 'antd';
 import axios from 'axios';
 import SideVideo from './Sections/SideVideo';
 import Subscriber from './Sections/Subscriber';
@@ -50,7 +50,15 @@ function DetailVideoPage(props) {
     const updateComment = (newComment) => {
         setCommentLists(CommentLists.concat(newComment))
     }
- 
+    const [copySuccess, setCopySuccess] = useState('');
+    const textAreaRef = useRef(null);
+  
+      function copyToClipboard(e) {
+          textAreaRef.current.select();
+          document.execCommand('copy');
+          e.target.focus();
+          setCopySuccess('Link Copied!');
+        };
 
     if (Video.writer) {
         return (
@@ -58,9 +66,21 @@ function DetailVideoPage(props) {
                 <Col lg={18} xs={24}>
                     <div className="postPage" style={{ width: '100%', padding: '3rem 4em' }}>
                         <video style={{ width: '100%' }} src={`http://localhost:5000/${Video.filePath}`} controls></video>
-
+                        <form >
+                         <Input style={{visibility:'visible' ,position:'fixed', marginTop:'-100%'}}
+                          ref={textAreaRef}
+                           value={'http://localhost:3000/video/'+videoId}
+                         />  
+                         </form>
                         <List.Item
-                            actions={[<LikeDislikes video videoId={videoId} userId={sessionStorage.getItem('userId')}   />, <Subscriber userTo={Video.writer._id} userFrom={sessionStorage.getItem('userId')} />]}
+                         
+                            actions={[
+                                <div>
+                            <Button onClick={copyToClipboard}>Share <Icon type="share-alt" /></Button>
+                            {copySuccess}
+                            </div>,
+                            <LikeDislikes video videoId={videoId} userId={sessionStorage.getItem('userId')}   />,
+                             <Subscriber userTo={Video.writer._id} userFrom={sessionStorage.getItem('userId')} />]}
                         >
                             <List.Item.Meta
                                 avatar={<Avatar src={Video.writer && Video.writer.image} />}
@@ -70,9 +90,8 @@ function DetailVideoPage(props) {
                             <div></div>
                         </List.Item>
                         {sessionStorage.getItem('userId') != null &&
-
                         <Comments CommentLists={CommentLists} postId={Video._id} refreshFunction={updateComment} />
-        }
+                          }
                     </div>
                 </Col>
                 <Col lg={6} xs={24}>
