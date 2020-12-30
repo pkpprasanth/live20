@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Menu } from 'antd';
+import { Menu,Icon } from 'antd';
 import axios from 'axios';
 import { USER_SERVER } from '../../../Config';
 import { withRouter } from 'react-router-dom';
@@ -22,13 +22,14 @@ function RightMenu(props) {
   };
 
   if (user.userData && !user.userData.isAuth) {
-    return (
+    
+return (
       <Menu mode={props.mode}>
         <Menu.Item key="mail">
-          <a href="/login">Signin</a>
+          <a href="/login"><Icon type="login" />Signin</a>
         </Menu.Item>
         <Menu.Item key="app">
-          <a href="/register">Signup</a>
+          <a href="/register"><Icon type="user-add" />Signup</a>
         </Menu.Item>
         
       </Menu>
@@ -39,13 +40,13 @@ function RightMenu(props) {
     return (
       <Menu mode={props.mode}>
          <Menu.Item key="myprofile">
-          <a href="/myprofile">Myprofile</a>
+          <a href="/myprofile"><Icon type="user" />Myprofile</a>
         </Menu.Item>
         <Menu.Item key="create">
           <a href="/video/upload"><img src={Upload} alt="Upload" /></a>
         </Menu.Item>
         <Menu.Item key="logout">
-          <a onClick={logoutHandler}>Logout</a>
+          <a onClick={logoutHandler}><Icon type="logout" />Logout</a>
           
         </Menu.Item>
       </Menu>

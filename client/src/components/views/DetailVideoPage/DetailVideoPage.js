@@ -23,7 +23,9 @@ function DetailVideoPage(props) {
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.video)
+
                     setVideo(response.data.video)
+                    sessionStorage.setItem('videoId',videoId)
                     axios.put('/api/video/views/'+videoId+'/'+response.data.video.views).then(
                         console.log("success")
                     )
@@ -58,7 +60,7 @@ function DetailVideoPage(props) {
                         <video style={{ width: '100%' }} src={`http://localhost:5000/${Video.filePath}`} controls></video>
 
                         <List.Item
-                            actions={[<LikeDislikes video videoId={videoId} userId={sessionStorage.getItem('userId')}  />, <Subscriber userTo={Video.writer._id} userFrom={sessionStorage.getItem('userId')} />]}
+                            actions={[<LikeDislikes video videoId={videoId} userId={sessionStorage.getItem('userId')}   />, <Subscriber userTo={Video.writer._id} userFrom={sessionStorage.getItem('userId')} />]}
                         >
                             <List.Item.Meta
                                 avatar={<Avatar src={Video.writer && Video.writer.image} />}

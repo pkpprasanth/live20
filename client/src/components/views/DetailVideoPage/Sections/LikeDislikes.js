@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Tooltip, Icon } from 'antd';
+import React, { useEffect,useRef, useState } from 'react'
+import { Tooltip, Icon,Button,Input,SnippetsOutlined } from 'antd';
 
 import Axios from 'axios';
 
@@ -147,10 +147,32 @@ function LikeDislikes(props) {
 
 
     }
+ const [copySuccess, setCopySuccess] = useState('');
+  const textAreaRef = useRef(null);
+
+    function copyToClipboard(e) {
+        textAreaRef.current.select();
+        document.execCommand('copy');
+        e.target.focus();
+        setCopySuccess('Link Copied!');
+      };
 
     return (
         <React.Fragment>
             <span key="comment-basic-like">
+            <form >
+          <Input style={{visibility:'visible' ,position:'fixed', marginTop:'-100%'}}
+          ref={textAreaRef}
+          value={'http://localhost:3000/video/'+props.videoId}
+         />
+        </form>
+        
+                <Button onClick={copyToClipboard}>Share <Icon type="share-alt" /></Button>
+                {copySuccess}
+{/* 
+                <Button 
+                    onClick={() =>  navigator.clipboard.writeText('http://localhost:3000/video/'+props.videoId)}>
+                Share</Button> */}
                 <Tooltip title="Like">
                     <Icon type="like"
                         theme={LikeAction === 'liked' ? 'filled' : 'outlined'}
@@ -168,6 +190,7 @@ function LikeDislikes(props) {
                 </Tooltip>
                 <span style={{ paddingLeft: '8px', cursor: 'auto' }}>{Dislikes}</span>
             </span>
+       
         </React.Fragment>
     )
 }
