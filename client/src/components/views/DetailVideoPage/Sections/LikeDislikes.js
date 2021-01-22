@@ -160,7 +160,7 @@ function LikeDislikes(props) {
     return (
         <React.Fragment>
             <span key="comment-basic-like">
-            <form >
+            {/* <form >
           <Input style={{visibility:'visible' ,position:'fixed', marginTop:'-100%'}}
           ref={textAreaRef}
           value={'http://localhost:3000/video/'+props.videoId}
@@ -168,7 +168,7 @@ function LikeDislikes(props) {
         </form>
         
                 <Button onClick={copyToClipboard}>Share <Icon type="share-alt" /></Button>
-                {copySuccess}
+                {copySuccess} */}
 {/* 
                 <Button 
                     onClick={() =>  navigator.clipboard.writeText('http://localhost:3000/video/'+props.videoId)}>

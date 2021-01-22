@@ -59,6 +59,41 @@ router.post("/login", (req, res) => {
     });
 });
 
+router.post("/reset", (req, res) => {
+    let email = req.body.email;
+    console.log(email)
+    User.findOne({ email: email }, (err, user) => {
+
+        if (!user){
+            return res.json({
+                success: false,
+            });
+        }
+        else{
+            user.password = req.body.password;
+            let usr = new User(user)
+            usr.save((err, doc) => {
+                if (err) return res.json({ success: false, err }); 
+                return res.status(200).json({
+                    success : true
+                });
+            });
+        }
+        });
+    });
+    // router.put('/:email', (req, res) => {
+    //     console.log(req.params.email)
+    //     console.log(req.body.password )
+        
+    //     User.findOneAndUpdate(req.params.email, { $set: {password : req.body.password} }, { new: true }, (err, doc) => {
+    //         console.log(doc)
+    //         console.log(err)
+    //         if (!err) { res.send(doc); }
+    //         else { console.log('Error in Employee Update :' + JSON.stringify(err, undefined, 2)); }
+    //     });
+    // });
+
+
 router.get("/logout", auth, (req, res) => {
     User.findOneAndUpdate({ _id: req.user._id }, { token: "", tokenExp: "" }, (err, doc) => {
         if (err) return res.json({ success: false, err });

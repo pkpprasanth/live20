@@ -76,7 +76,7 @@ function DetailVideoPage(props) {
                          
                             actions={[
                                 <div>
-                            <Button onClick={copyToClipboard}>Share <Icon type="share-alt" /></Button>
+                            <Button type="primary" onClick={copyToClipboard}>Share <Icon type="share-alt" /></Button>
                             {copySuccess}
                             </div>,
                             <LikeDislikes video videoId={videoId} userId={sessionStorage.getItem('userId')}   />,

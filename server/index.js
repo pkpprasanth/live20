@@ -20,6 +20,15 @@ app.use('/api/subscribe', require('./routes/subscribe'));
 app.use('/api/comment', require('./routes/comment'));
 app.use('/api/like', require('./routes/like'));
 app.use('/api/contest', require('./routes/contest'));
+const { sendEmail } = require('./mail');
+
+
+app.post("/api/sendMail", (req, res) => {
+
+    console.log(req.body)      
+    sendEmail(req.body.email, req.body.name, req.body.type,req.body.password,req.body.lastname)
+
+})
 
 
 //use this to show the image you have in node js server to client (react js)

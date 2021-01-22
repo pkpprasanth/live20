@@ -132,6 +132,9 @@ function UploadVideoPage(props) {
         <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                 <Title level={2} > Upload Video</Title>
+                <h2 style={{ color:'red' }}>
+               * We must upload International standard video format 16:9 (1.77:1) is a widescreen aspect ratio with a width of 16 units and height of 9 ! ❤️
+</h2>
             </div>
 
             <Form onSubmit={onSubmit}>
@@ -159,16 +162,18 @@ function UploadVideoPage(props) {
                 </div>
 
                 <br /><br />
-                <label>Title</label>
                 <Input
                     onChange={handleChangeTitle}
                     value={title}
+                    placeholder="Title"
                 />
                 <br /><br />
-                <label>Description</label>
-                <TextArea
+                {/* <label>Description</label> */}
+                <Input
                     onChange={handleChangeDecsription}
                     value={Description}
+                    placeholder="Description"
+
                 />
                 <br /><br />
 
@@ -186,7 +191,7 @@ function UploadVideoPage(props) {
                 </select>
                 <br /><br />
 
-                <Button style={{ textAlign: 'center', marginLeft: '20rem' }}
+                <Button style={{ textAlign: 'center', marginLeft: '10rem' }}
                  type="primary" size="large" onClick={onSubmit}>
                     Submit
             </Button>

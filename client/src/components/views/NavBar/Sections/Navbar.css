@@ -1,6 +1,7 @@
 @import '~antd/dist/antd.css';
 
 .menu {
+  display: block;
   padding: 10px 20px;
   border-bottom: solid 1px #e8e8e8;
   overflow: auto;
@@ -47,6 +48,34 @@
 }
 
 .menu__mobile-button {
+  float: right;
+  height: 32px;
+  padding: 6px;
+  margin-top: 8px;
+  border: 1px solid black;
+  display: none !important; /* use of important to overwrite ant-btn */
+  background: #3e91f7;
+}
+.menu__mobile-button1 {
+  float: right;
+  height: 32px;
+  padding: 6px;
+  margin-top: 8px;
+  border: 1px solid black;
+  background: #3e91f7;
+}
+.menu__new {
+    height: 32px;
+    width: 72px;
+    position: absolute;
+    padding: 6px;
+    margin-top: 75px;
+    margin-left: -140px;
+    border: 1px solid black;
+    background: #3e91f7;
+}
+
+.menu__mobile {
   float: right;
   height: 32px;
   padding: 6px;

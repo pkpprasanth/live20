@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { registerUser } from "../../../_actions/user_actions";
 import { useDispatch } from "react-redux";
-
+import axios from 'axios';
 import {
   Form,
   Input,
@@ -44,7 +44,7 @@ function RegisterPage(props) {
         lastName: '',
         name: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
       }}
       validationSchema={Yup.object().shape({
         name: Yup.string()
@@ -69,12 +69,18 @@ function RegisterPage(props) {
             password: values.password,
             name: values.name,
             lastname: values.lastname,
-            image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`
+            image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`,
+            type:'hello'
           };
+         
+
+  
 
           dispatch(registerUser(dataToSubmit)).then(response => {
             if (response.payload.success) {
-              props.history.push("/login");
+              axios.post('/api/sendMail', dataToSubmit)
+              alert('Registration Successfully and check your Email')
+              props.history.push("/");
             } else {
               alert(response.payload.err.errmsg)
             }

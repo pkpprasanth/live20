@@ -4,7 +4,37 @@
     transform: scale(1.09);
      box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
 }
-
+.new1{
+  padding-top: 5%;
+}
 Meta{
     color: red;
+  }
+
+  .scroll {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll {
+  
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
+
+
+@media all and (max-width: 767px) {
+  .newabc {
+      position: fixed;
+      z-index: 1;
+      margin-top: -20%;
+      width: 100%;
+      background: rgb(214, 26, 26);
+      color: rgb(224, 9, 9);
+    }
+    
   }

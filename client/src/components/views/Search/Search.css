@@ -1,7 +1,7 @@
-input[type=text], select {
-    width: 100%;
+.input {
+    width: 60%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 20px 100px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -10,7 +10,7 @@ input[type=text], select {
 
   }
 
-  input[type=text]:hover {
+ .input:hover {
     transition: .5s;
   cursor: pointer;
   transform: scale(1.09);

@@ -14,7 +14,7 @@ function RightMenu(props) {
     axios.get(`${USER_SERVER}/logout`).then(response => {
       if (response.status === 200) {
         sessionStorage.clear()
-        props.history.push("/login");
+        props.history.push("/");
       } else {
         alert('Log Out Failed')
       }
@@ -26,7 +26,7 @@ function RightMenu(props) {
 return (
       <Menu mode={props.mode}>
         <Menu.Item key="mail">
-          <a href="/login"><Icon type="login" />Signin</a>
+          <a href="/"><Icon type="login" />Signin</a>
         </Menu.Item>
         <Menu.Item key="app">
           <a href="/register"><Icon type="user-add" />Signup</a>
@@ -39,8 +39,20 @@ return (
   } else {
     return (
       <Menu mode={props.mode}>
+          <Menu.Item key="mail">
+      <a href="/home"><Icon type="home" />Home</a>
+    </Menu.Item>
+    <Menu.Item key="subscription">
+      <a href="/subscription"><Icon type="video-camera" />My Video's</a>
+    </Menu.Item>
+    <Menu.Item key="category">
+      <a href="/category"><Icon type="menu-unfold"/>Category</a>
+    </Menu.Item>
          <Menu.Item key="myprofile">
           <a href="/myprofile"><Icon type="user" />Myprofile</a>
+        </Menu.Item>
+        <Menu.Item key="changepassword">
+          <a href="/change"><Icon type="edit" />ChangePassword</a>
         </Menu.Item>
         <Menu.Item key="create">
           <a href="/video/upload"><img src={Upload} alt="Upload" /></a>

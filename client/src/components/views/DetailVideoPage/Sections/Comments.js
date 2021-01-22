@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Input } from 'antd';
+import { Button, Input,Icon } from 'antd';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import SingleComment from './SingleComment';
@@ -19,7 +19,7 @@ function Comments(props) {
 
         const variables = {
             content: Comment,
-            writer: user.userData._id,
+            writer: sessionStorage.getItem('userId'),
             postId: props.postId
         }
 
@@ -37,7 +37,7 @@ function Comments(props) {
     return (
         <div>
             <br />
-            <p> replies</p>
+            <p> Replies</p>
             <hr />
             {/* Comment Lists  */}
             {console.log(props.CommentLists)}
@@ -59,10 +59,11 @@ function Comments(props) {
                     style={{ width: '100%', borderRadius: '5px' }}
                     onChange={handleChange}
                     value={Comment}
-                    placeholder="write some comments"
+                    placeholder="write your comments"
                 />
                 <br />
-                <Button style={{ width: '20%', height: '52px' }} onClick={onSubmit}>Submit</Button>
+                
+                <Button style={{  height: '52px',backgroundColor:'#40a9ff' }} onClick={onSubmit}>Submit<Icon type="right-circle" theme="filled" style={{  fontSize: '23px'}} /></Button>
             </form>
 
         </div>

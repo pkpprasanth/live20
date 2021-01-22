@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaCode } from "react-icons/fa";
-import { Card, Avatar, Col, Typography, Row } from 'antd';
+import { Card, Avatar, Col, Typography, Row,Icon } from 'antd';
 import axios from 'axios';
 import moment from 'moment';
 import Silde from '../Silde/Silde';
@@ -8,7 +8,7 @@ import Search from '../Search/Search'
 import './new.css'
 const { Title } = Typography;
 const { Meta } = Card;
-function LandingPage() {
+function LandingPage(props) {
 
     const [Videos, setVideos] = useState([])
     const [Videos1, setVideos1] = useState([])
@@ -25,8 +25,12 @@ function LandingPage() {
                     alert('Failed to get Videos')
                 }
             })
-    }, [])
 
+            if(sessionStorage.getItem("userId")==null){
+                console.log("Login First")
+                props.history.push("/");
+            }
+    }, [])
 
 
     
@@ -38,9 +42,9 @@ function LandingPage() {
         var seconds = Math.floor(video.duration - minutes * 60);
 
         return <Col lg={6} md={8} xs={24} >
-            <div className="new"  style={{ position: 'relative' }}>
+            <div   style={{ position: 'relative',paddingTop:'40%',paddingLeft:'-50%'}}>
                 <a href={`/video/${video._id}`} >
-                <img style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${video.thumbnail}`} />
+                <img className="new"   style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${video.thumbnail}`} />
                 <div className=" duration"
                     style={{ bottom: 0, right:0, position: 'absolute', margin: '4px', 
                     color: '#fff', backgroundColor: 'rgba(17, 17, 17, 0.8)', opacity: 0.8, 
@@ -122,21 +126,34 @@ function LandingPage() {
    
 
     return (
-        <div style={{ width: '85%', margin: '3rem auto' ,color:'rgb(12, 12, 12)' }}>
-            <Title level={2} > About </Title>
-            <hr />
-            <Silde></Silde>
-            <hr />
-            <Search searchInput={(e)=>searchInput1(e)} searchIt={()=>this.state.search}/>
-            <button value="" onClick={searchInput}>Refresh</button>
-            <button value="Autos & Vehicles" onClick={searchInput}>Autos & Vehicles</button>
-            <button value="Pets & Animals" onClick={searchInput}>Pets & Animals</button>
-            <button value="Music" onClick={searchInput}>Music</button>
-            <button value="Sports" onClick={searchInput}>Sports</button>
+        <div style={{  margin: '2rem auto',color:'rgb(12, 12, 12)' }}>
+            {/* <Title level={2} > About </Title> */}
+            {/* <hr />
+            <Silde></Silde> */}
+            <div className="newabc"  style={{position: 'fixed', zIndex: 1,marginTop:'-1.9%', width: '100%',background:"white"}} >
+            <Search className="searchbox" searchInput={(e)=>searchInput1(e)} searchIt={()=>this.state.search}/>
+           
+       
+            {/* <hr /> */}
+
+            <div className="scroll">
+            <button className="btn" value="" onClick={searchInput}>All Videos</button>
+            <button className="btn" value="Autos & Vehicles" onClick={searchInput}>Autos & Vehicles</button>
+            <button className="btn" value="Film & Animation" onClick={searchInput}>Film & Animation</button>
+            <button className="btn" value="Pets & Animals" onClick={searchInput}>Pets & Animals</button>
+            <button className="btn" value="Music" onClick={searchInput}>Music</button>
+            <button className="btn" value="Sports" onClick={searchInput}>Sports</button>
+            <button className="btn" value="Food" onClick={searchInput}>Food</button>
+
+           <button className="btn" value="Serial" onClick={searchInput}>Serial</button>
+           <button className="btn" value="Craft" onClick={searchInput}>Craft</button>
+           {/* <Icon type="right" /> */}
+           </div>
+           </div>
            <div style={{color:'#f4f6f8' }}>
              <Title level={2} > Vidoes List </Title>
 
-            <Row  gutter={16}  >
+            <Row  gutter={30}  >
                 {renderCards}
             </Row>
             </div>

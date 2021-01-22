@@ -45,14 +45,16 @@ function LoginPage(props) {
 
           dispatch(loginUser(dataToSubmit))
             .then(response => {
+              console.log(response)
               if (response.payload.loginSuccess) {
+                window.sessionStorage.setItem('email', values.email);
                 window.sessionStorage.setItem('userId', response.payload.userId);
                 if (rememberMe === true) {
                   window.sessionStorage.setItem('rememberMe', values.id);
                 } else {
                   sessionStorage.removeItem('rememberMe');
                 }
-                props.history.push("/");
+                props.history.push("/home");
               } else {
                 setFormErrorMessage('Check out your Account or Password again')
               }
@@ -81,7 +83,7 @@ function LoginPage(props) {
         } = props;
         return (
           <div className="app">
-
+            <Title level={1}  >Welcome to live20 and Make a fun with Us 😍</Title>
             <Title level={2}>Log In</Title>
             <form onSubmit={handleSubmit} style={{ width: '350px' }}>
 
@@ -127,9 +129,9 @@ function LoginPage(props) {
 
               <Form.Item>
                 <Checkbox id="rememberMe" onChange={handleRememberMe} checked={rememberMe} >Remember me</Checkbox>
-                {/* <a className="login-form-forgot" href="/reset_user" style={{ float: 'right' }}>
+                <a className="login-form-forgot" href="/reset" style={{ float: 'right' }}>
                   forgot password
-                  </a> */}
+                  </a>
                 <div>
                   <Button type="primary" htmlType="submit" className="login-form-button" style={{ minWidth: '100%' }} disabled={isSubmitting} onSubmit={handleSubmit}>
                     Log in
